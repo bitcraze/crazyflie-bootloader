@@ -108,6 +108,7 @@ int main() {
         ctr=0;
         led = !led;
         ledSetGreen(led);
+        ledSetRed(!led);
       }
     }
     //Run the radio interruption handler
