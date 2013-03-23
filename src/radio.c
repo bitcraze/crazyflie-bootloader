@@ -435,6 +435,15 @@ void radioIsr()
   return;
 }
 
+/**
+ * Set 5bytes address of the radio pipe0
+ */
+void radioSetAddress(char * address)
+{
+  RADIO_DIS_CE();
+  radioSpiWrite(REG_RX_ADDR_P0, address, 5);
+  RADIO_EN_CE();
+}
 
 /* Radio High level initialisatio (ie. the SPI is inistialised. 
  * This function init the radio chip itself */

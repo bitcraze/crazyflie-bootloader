@@ -26,6 +26,11 @@
 #ifndef __LOADER_COMMANDS_H__
 #define __LOADER_COMMANDS_H__
 
+/* XXX: Protocol version has to be increased each time a command is
+ * added or modified!
+ */
+#define PROTOCOL_VERSION 1
+
 #define CPUID_LEN 12
 
 /******* GetInfo ******/
@@ -38,7 +43,16 @@ typedef struct {
   short nFlashPages;
   short flashStart;
   char  cpuId[CPUID_LEN];
+  char version;
 } __attribute__((__packed__)) GetInfoReturns_t;
+
+/****** SetAddress ****/
+#define CMD_SET_ADDRESS 0x11
+//Parameters:
+typedef struct {
+  char address[5];
+} __attribute__((__packed__)) SetAddressParameters_t;
+//Returns ... void
 
 /****** LoadBuffer ****/
 #define CMD_LOAD_BUFFER 0x14

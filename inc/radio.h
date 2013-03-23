@@ -30,6 +30,7 @@
 
 /* Public methods */
 void radioInit();
+void radioSetAddress(char * address);
 int radioSendPacket(CRTPPacket *p);
 int radioReceivePacket(CRTPPacket *p);
 int radioCheckForReceivePacket(void);

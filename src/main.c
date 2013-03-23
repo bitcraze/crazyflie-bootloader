@@ -168,10 +168,18 @@ int main() {
           info->nFlashPages = FLASH_PAGES;
           info->flashStart = FLASH_START;
           memcpy(info->cpuId, cpuidGetId(), CPUID_LEN);
+          info->version = PROTOCOL_VERSION;
           
           pk.size = 2+sizeof(GetInfoReturns_t);
           
           radioSendPacket(&pk);
+        }
+        else if (pk.data[1] == CMD_SET_ADDRESS)
+        {
+          SetAddressParameters_t * addressPk;
+          addressPk = (SetAddressParameters_t *)&pk.data[2];
+          
+          radioSetAddress(addressPk->address);
         }
         else if (pk.data[1] == CMD_LOAD_BUFFER)
         {
