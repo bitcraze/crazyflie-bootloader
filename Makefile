@@ -97,6 +97,9 @@ flash:
 	openocd -d0 -f $(OPENOCD_INTERFACE) -f $(OPENOCD_TARGET) -c init -c targets -c "reset halt" -c "flash erase_sector 0 0 20" -c "flash write_image erase cloader.elf"\
           -c "verify_image cloader.elf" -c "reset run" -c shutdown
 
+erase:
+	openocd -d0 -f $(OPENOCD_INTERFACE) -f $(OPENOCD_TARGET) -c init -c targets -c"reset halt" -c " stm32f1x mass_erase 0" -c shutdown
+
 #STM utility targets
 halt:
 	openocd -d0 -f $(OPENOCD_INTERFACE) -f $(OPENOCD_TARGET) -c init -c targets -c "halt" -c shutdown
